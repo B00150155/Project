@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class FPSController : MonoBehaviour
 {   
+    // trying something
     public Camera playerCamera;
 
     public float lookSpeed = 2f;
