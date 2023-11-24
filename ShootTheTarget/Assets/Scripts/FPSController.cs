@@ -7,9 +7,14 @@ public class FPSController : MonoBehaviour
 {   
     // trying something
     public Camera playerCamera;
+    public float walkSpeed = 6f;
+    public float runSpeed = 12f; 
+    public float jumpPower = 7f; 
+    public float gravity = 15f; 
 
     public float lookSpeed = 2f;
     public float lookXLimit = 45f;
+
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
 
@@ -20,13 +25,34 @@ public class FPSController : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        Cursor.visible = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        Vector3 forward = transform.TransformDirection(Vector3.forward);
+        Vector3 right = transform.TransformDirection(Vector3.right);
+
+        bool isRunning = Input.GetKey(KeyCode.LeftShift);
+        float curSpeedX = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Vertical") : 0;
+        float curSpeedY = canMove ? (isRunning ? runSpeed : walkSpeed) * Input.GetAxis("Horizontal") : 0;
+        float moveDirectionY = moveDirection.y;
+        moveDirection = (forward * curSpeedX) + (right * curSpeedY);
+
+
+        if(Input.GetButton("Jump") && canMove && characterController.isGrounded){
+            moveDirection.y = jumpPower;
+        } else {
+            moveDirection.y = moveDirectionY;
+        }
+
+        if(!characterController.isGrounded){
+            moveDirection.y -= gravity * Time.deltaTime;
+        }
+
+
         characterController.Move(moveDirection * Time.deltaTime);
 
         if(canMove){
