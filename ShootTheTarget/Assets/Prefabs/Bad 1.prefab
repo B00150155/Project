@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5941898389248886051}
   m_Layer: 0
   m_Name: Bad 1
-  m_TagString: Untagged
+  m_TagString: Bad
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -128,7 +128,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -146,5 +146,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7da658ef13738124d8231fa9322453d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointValue: -150
+  pointValue: 0
   timeOnScreen: 1

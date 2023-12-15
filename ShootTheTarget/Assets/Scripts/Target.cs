@@ -2,19 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class TargetX : MonoBehaviour
 {
     private Rigidbody rb;
     private GameManager gameManager;
+
     public int pointValue;
-    
-    //public GameObject explosionFx;
 
     public float timeOnScreen = 1.0f;
-
-    private float minValueX = -3.75f; // the x value of the center of the left-most square
-    private float minValueY = -3.75f; // the y value of the center of the bottom-most square
-    private float spaceBetweenSquares = 2.5f; // the distance between the centers of squares on the game board
     
 
     void Start()
@@ -23,7 +19,7 @@ public class TargetX : MonoBehaviour
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
 
         transform.position = RandomSpawnPosition(); 
-        //StartCoroutine(RemoveObjectRoutine()); // begin timer before target leaves screen
+ 
 
     }
 
@@ -33,8 +29,12 @@ public class TargetX : MonoBehaviour
         if (gameManager.isGameActive)
         {
             Destroy(gameObject);
+            if(gameObject.CompareTag("Bad")){
+                Debug.Log("Fuck You");
+                gameManager.health --;
+            }
             gameManager.UpdateScore(pointValue);
-            //Explode();
+         
         }
                
     }
@@ -42,8 +42,8 @@ public class TargetX : MonoBehaviour
     // Generate a random spawn position based on a random index from 0 to 3
     Vector3 RandomSpawnPosition()
     {
-        float spawnPosX = Random.Range(-15, 5);//minValueX + (RandomSquareIndex() *spaceBetweenSquares);
-        float spawnPosZ = Random.Range(15, -5);//minValueY + (RandomSquareIndex() *spaceBetweenSquares);
+        float spawnPosX = Random.Range(-15, 5); 
+        float spawnPosZ = Random.Range(15, -5); 
 
         Vector3 spawnPosition = new Vector3(spawnPosX, 10, spawnPosZ);
         return spawnPosition;

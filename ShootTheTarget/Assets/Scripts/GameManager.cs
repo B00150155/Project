@@ -14,18 +14,32 @@ public class GameManager : MonoBehaviour
     public Button startButton;
     public Button restartButton;
 
+    public int health;
+    public int numberOfHearts;
+
+    public Image[] hearts;
+    public Sprite FullHeart;
+    public Sprite EmptyHeart;
+
+    //public bool hasPowerUp;
+
     private FPSController fPSController;
 
     public List<GameObject> targetPrefabs;
 
     private int score;
-    private float timeLeft;
+
     private float spawnRate = 1.5f;
     public bool isGameActive;
 
     //private float spaceBetweenSquares = 2.5f;
     //private float minValueX = -3.75f; //  x value of the center of the left-most square
     //private float minValueY = -3.75f; //  y value of the center of the bottom-most square
+
+
+    void Start(){
+        fPSController = GameObject.Find("Player").GetComponent<FPSController>();
+    }
 
     // Start the game, remove title screen, reset score, and adjust spawnRate based on difficulty button clicked
     public void StartGame(int difficulty)
@@ -36,7 +50,7 @@ public class GameManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         score = 0;
-        timeLeft = 60;
+
         UpdateScore(0);
         titleScreen.gameObject.SetActive(false);
     }
@@ -76,7 +90,7 @@ public class GameManager : MonoBehaviour
 
     // Update score with value from target clicked
     public void UpdateScore(int scoreToAdd)
-    {
+    {   
         score += scoreToAdd;
         scoreText.text = "Score: " + score;
     }
@@ -105,14 +119,37 @@ public class GameManager : MonoBehaviour
     {
         if (isGameActive)
         {
-            timeLeft -= Time.deltaTime;
-            timerText.SetText("Time: " + Mathf.Round(timeLeft));
-            if (timeLeft < 0)
+            if (health > numberOfHearts){
+                health = numberOfHearts;
+            }
+
+            for (int i = 0; i < hearts.Length; i++)
+        {
+            if (i < health)
+            {
+                hearts[i].sprite = FullHeart;
+            } else
+            {
+                hearts[i].sprite = EmptyHeart;
+            }
+            
+            if (i < numberOfHearts)
+            {
+                hearts[i].enabled = true;
+            } else
+            {
+                hearts[i].enabled = false;
+            }
+        }
+
+            if (health == 0)
             {
                 GameOver();
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
             }
         }
+
+        
     }
 }

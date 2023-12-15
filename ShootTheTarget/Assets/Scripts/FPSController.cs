@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterController))]
 public class FPSController : MonoBehaviour
 {   
     // trying something
     public Camera playerCamera;
+    private Rigidbody player;
     public float walkSpeed = 6f;
     public float runSpeed = 12f; 
     public float jumpPower = 7f; 
-    public float gravity = 15f; 
+    public float gravity = 15f;
 
     public float lookSpeed = 2f;
     public float lookXLimit = 45f;
@@ -20,11 +22,14 @@ public class FPSController : MonoBehaviour
 
     public bool canMove = true;
 
+    public bool hasPowerUp;
+
     CharacterController characterController;
     // Start is called before the first frame update
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        player = GetComponent<Rigidbody>();
         Cursor.visible = true;
     }
 
@@ -61,5 +66,19 @@ public class FPSController : MonoBehaviour
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
+
+
+
     }
+
+    private void OnTriggerEnter(Collider other) {
+        if(other.gameObject.CompareTag("PowerUp")){
+            hasPowerUp = true;
+            Destroy(other.gameObject);
+            Debug.Log("George");
+        }    
+    }
+
+   
+
 }
