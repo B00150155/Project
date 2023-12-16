@@ -14,6 +14,12 @@ public class GameManager : MonoBehaviour
     public Button startButton;
     public Button restartButton;
 
+    public Button easyButton;
+
+    public Button mediumButton;
+
+    public Button hardButton;
+
     public int health;
     public int numberOfHearts;
 
@@ -39,12 +45,18 @@ public class GameManager : MonoBehaviour
 
     void Start(){
         fPSController = GameObject.Find("Player").GetComponent<FPSController>();
+        /*easyButton = GetComponent<Button>();
+        mediumButton = GetComponent<Button>();
+        hardButton = GetComponent<Button>();
+
+        easyButton.onClick.AddListener(SetDifficulty(5));
+        mediumButton.onClick.AddListener(SetDifficulty(3));
+        hardButton.onClick.AddListener(SetDifficulty(1));*/
     }
 
     // Start the game, remove title screen, reset score, and adjust spawnRate based on difficulty button clicked
-    public void StartGame(int difficulty)
+    public void StartGame()
     {
-        spawnRate /= difficulty;
         isGameActive = true;
         StartCoroutine(SpawnTarget());
         StartCoroutine(SpawnPowerUp());
@@ -106,11 +118,6 @@ public class GameManager : MonoBehaviour
         isGameActive = false;
     }
 
-    public void StartGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
     // Restart game by reloading the scene
     public void RestartGame()
     {
@@ -154,6 +161,12 @@ public class GameManager : MonoBehaviour
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
             }
+
+            if(score < 0){
+                GameOver();
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+            }
         }
 
         
@@ -186,13 +199,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    IEnumerator RemoveObjectRoutine ()
-    {
-        yield return new WaitForSeconds(5);
-        //Destroy(gameObject.CompareTag("2x"));
-
-    }
-
     Vector3 RandomPowerSpawnPosition()
     {
         float spawnPosX = Random.Range(-15, 5);  
@@ -201,5 +207,11 @@ public class GameManager : MonoBehaviour
         Vector3 spawnPosition = new(spawnPosX, 1, spawnPosZ);
         return spawnPosition;
 
+    }
+
+    public void SetDifficulty(int difficulty){
+        Debug.Log(gameObject.name);
+        numberOfHearts = difficulty;
+        health = difficulty;
     }
 }
