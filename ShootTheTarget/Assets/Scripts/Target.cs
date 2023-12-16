@@ -26,18 +26,24 @@ public class Target : MonoBehaviour
 
     }
 
-    // When target is clicked, destroy it, update score, and generate explosion
+    // When target is clicked, destroy it, update score
     private void OnMouseDown()
     {
-        if (gameManager.isGameActive)
-        {
+        if (gameManager.isGameActive){
             Destroy(gameObject);
             if(gameObject.CompareTag("Bad")){
                 Debug.Log("Fuck You");
                 gameManager.health --;
             } 
+            
+
+            if(gameManager.has2xPowerUp){
+                pointValue = 2*pointValue;
+            }  
+
             gameManager.UpdateScore(pointValue);
-         
+
+            Debug.Log(pointValue);
         }
                
     }

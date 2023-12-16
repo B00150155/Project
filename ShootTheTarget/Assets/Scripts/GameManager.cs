@@ -143,6 +143,10 @@ public class GameManager : MonoBehaviour
                     health++;
                     hasHealthPowerUp = false;
                 }
+
+                if (has2xPowerUp){
+                    StartCoroutine(PowerupCountdownRoutine());
+                }
             }
 
             if(health == 0){
@@ -155,9 +159,14 @@ public class GameManager : MonoBehaviour
         
     }
 
+     IEnumerator PowerupCountdownRoutine(){
+        yield return new WaitForSeconds(7);
+        has2xPowerUp = false;
+    }
+
     IEnumerator SpawnPowerUp(){
         while(isGameActive){
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(30);
             int index = Random.Range(0, powerUps.Count);
 
             if(isGameActive){

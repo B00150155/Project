@@ -25,6 +25,7 @@ public class PowerUp : MonoBehaviour
         
     }
 
+
     void Start(){
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
