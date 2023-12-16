@@ -157,7 +157,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 300.5, y: 183}
+  m_AnchoredPosition: {x: 387, y: 183}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &78211343
@@ -712,7 +712,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 340.9, y: 183}
+  m_AnchoredPosition: {x: 427.4, y: 183}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &367543508
@@ -787,7 +787,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 383, y: 183}
+  m_AnchoredPosition: {x: 469.5, y: 183}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &493069514
@@ -2178,7 +2178,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 217.2, y: 183}
+  m_AnchoredPosition: {x: 303.7, y: 183}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1107902808
@@ -7556,7 +7556,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 258.8, y: 183}
+  m_AnchoredPosition: {x: 345.3, y: 183}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1476906543
@@ -8236,7 +8236,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 315141656}
-  timerText: {fileID: 0}
   gameOverText: {fileID: 1488771518}
   titleScreen: {fileID: 562109828}
   startButton: {fileID: 1371568921}
@@ -8259,6 +8258,8 @@ MonoBehaviour:
   - {fileID: 572476374639393425, guid: bb0057f46b071154b9570fb51ee805b6, type: 3}
   - {fileID: 6670946034261299888, guid: 0f01af9d004904f4da5c8670a4e0c56a, type: 3}
   isGameActive: 0
+  has2xPowerUp: 0
+  hasHealthPowerUp: 0
 --- !u!4 &1859790423
 Transform:
   m_ObjectHideFlags: 0
@@ -8717,10 +8718,10 @@ RectTransform:
   - {fileID: 1107902807}
   m_Father: {fileID: 88766531}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -491.5, y: -208}
+  m_SizeDelta: {x: 983, y: 416}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2071164913
 MonoBehaviour:
