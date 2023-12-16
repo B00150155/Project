@@ -5,17 +5,28 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
+    private GameManager gameManager;
 
-
-  
+    public Target target;
     void OnTriggerEnter(Collider other) {
-        if(other.CompareTag("Player")){
-            Destroy(gameObject);
-            Debug.Log("George");
+        if(gameObject.CompareTag("2x")){
+            if(other.CompareTag("Player")){
+                Destroy(gameObject);
+                Debug.Log("George2x");
+                gameManager.has2xPowerUp = true;
+            }
+        }else if (gameObject.CompareTag("Health")){
+            if(other.CompareTag("Player")){
+                Destroy(gameObject);
+                Debug.Log("GeorgeHealth");
+                gameManager.hasHealthPowerUp = true;
+            }
         }
+        
     }
 
     void Start(){
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
     }
 
     void Update(){

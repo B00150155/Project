@@ -71,14 +71,4 @@ public class FPSController : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other) {
-        if(other.gameObject.CompareTag("PowerUp")){
-            hasPowerUp = true;
-            Destroy(other.gameObject);
-            Debug.Log("George");
-        }    
-    }
-
-   
-
 }

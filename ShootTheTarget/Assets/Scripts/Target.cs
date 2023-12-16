@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class TargetX : MonoBehaviour
+public class Target : MonoBehaviour
 {
     private Rigidbody rb;
     private GameManager gameManager;
+
+ 
 
     public int pointValue;
     public int penalty = -200;
@@ -33,7 +35,7 @@ public class TargetX : MonoBehaviour
             if(gameObject.CompareTag("Bad")){
                 Debug.Log("Fuck You");
                 gameManager.health --;
-            }
+            } 
             gameManager.UpdateScore(pointValue);
          
         }
