@@ -9,6 +9,7 @@ public class TargetX : MonoBehaviour
     private GameManager gameManager;
 
     public int pointValue;
+    public int penalty = -200;
 
     public float timeOnScreen = 1.0f;
     
@@ -57,25 +58,18 @@ public class TargetX : MonoBehaviour
     }
 
 
-    // If target that is NOT the bad object collides with sensor, trigger game over
+    
     private void OnTriggerEnter(Collider other)
     {
         Destroy(gameObject);
 
-        if (other.gameObject.CompareTag("Sensor") /*&& !gameObject.CompareTag("Bad")*/)
+        if (other.gameObject.CompareTag("Sensor"))
         {
-            gameManager.GameOver();
+            gameManager.UpdateScore(penalty);
         } 
 
     }
 
-    // Display explosion particle at object's position
-    /*void Explode ()
-    {
-        Instantiate(explosionFx, transform.position, explosionFx.transform.rotation);
-    }*/
-
-    // After a delay, Moves the object behind background so it collides with the Sensor object
     IEnumerator RemoveObjectRoutine ()
     {
         yield return new WaitForSeconds(timeOnScreen);

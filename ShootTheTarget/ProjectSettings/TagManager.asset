@@ -7,6 +7,8 @@ TagManager:
   - Sensor
   - PowerUp
   - Bad
+  - 2x
+  - Health
   layers:
   - Default
   - TransparentFX

@@ -26,15 +26,14 @@ public class GameManager : MonoBehaviour
     private FPSController fPSController;
 
     public List<GameObject> targetPrefabs;
+    public List<GameObject> powerUps;
 
     private int score;
 
     private float spawnRate = 1.5f;
     public bool isGameActive;
 
-    //private float spaceBetweenSquares = 2.5f;
-    //private float minValueX = -3.75f; //  x value of the center of the left-most square
-    //private float minValueY = -3.75f; //  y value of the center of the bottom-most square
+   
 
 
     void Start(){
@@ -47,6 +46,7 @@ public class GameManager : MonoBehaviour
         spawnRate /= difficulty;
         isGameActive = true;
         StartCoroutine(SpawnTarget());
+        StartCoroutine(SpawnPowerUp());
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         score = 0;
@@ -151,5 +151,33 @@ public class GameManager : MonoBehaviour
         }
 
         
+    }
+
+     void OnTriggerEnter(Collider other) {
+        if(other.CompareTag("Player")){
+            Destroy(gameObject);
+            Debug.Log("George");
+        }
+    }
+
+    IEnumerator SpawnPowerUp(){
+        while(isGameActive){
+            yield return new WaitForSeconds(3);
+            int index = Random.Range(0, powerUps.Count);
+
+            if(isGameActive){
+                Instantiate(powerUps[index], RandomPowerSpawnPosition(), powerUps[index].transform.rotation);
+            }
+        }
+    }
+
+    Vector3 RandomPowerSpawnPosition()
+    {
+        float spawnPosX = Random.Range(-15, 5);//minValueX + (RandomSquareIndex() *spaceBetweenSquares);
+        float spawnPosZ = Random.Range(15, -5);//minValueY + (RandomSquareIndex() *spaceBetweenSquares);
+
+        Vector3 spawnPosition = new(spawnPosX, 1, spawnPosZ);
+        return spawnPosition;
+
     }
 }
