@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI timerText;
+
     public TextMeshProUGUI gameOverText;
     public GameObject titleScreen;
     public Button startButton;
@@ -21,8 +21,6 @@ public class GameManager : MonoBehaviour
     public Sprite FullHeart;
     public Sprite EmptyHeart;
 
-    //public bool hasPowerUp;
-
     private FPSController fPSController;
 
     public List<GameObject> targetPrefabs;
@@ -32,6 +30,9 @@ public class GameManager : MonoBehaviour
 
     private float spawnRate = 1.5f;
     public bool isGameActive;
+
+    public bool has2xPowerUp;
+    public bool hasHealthPowerUp;
 
    
 
@@ -74,8 +75,8 @@ public class GameManager : MonoBehaviour
     // Generate a random spawn position based on a random index from 0 to 3
     Vector3 RandomSpawnPosition()
     {
-        float spawnPosX = Random.Range(-15, 5);//minValueX + (RandomSquareIndex() *spaceBetweenSquares);
-        float spawnPosZ = Random.Range(15, -5);//minValueY + (RandomSquareIndex() *spaceBetweenSquares);
+        float spawnPosX = Random.Range(-15, 5); 
+        float spawnPosZ = Random.Range(15, -5); 
 
         Vector3 spawnPosition = new Vector3(spawnPosX, 10, spawnPosZ);
         return spawnPosition;
@@ -91,8 +92,10 @@ public class GameManager : MonoBehaviour
     // Update score with value from target clicked
     public void UpdateScore(int scoreToAdd)
     {   
+    
         score += scoreToAdd;
         scoreText.text = "Score: " + score;
+
     }
 
     // Stop game, bring up game over text and restart button
@@ -153,13 +156,6 @@ public class GameManager : MonoBehaviour
         
     }
 
-     void OnTriggerEnter(Collider other) {
-        if(other.CompareTag("Player")){
-            Destroy(gameObject);
-            Debug.Log("George");
-        }
-    }
-
     IEnumerator SpawnPowerUp(){
         while(isGameActive){
             yield return new WaitForSeconds(3);
@@ -173,8 +169,8 @@ public class GameManager : MonoBehaviour
 
     Vector3 RandomPowerSpawnPosition()
     {
-        float spawnPosX = Random.Range(-15, 5);//minValueX + (RandomSquareIndex() *spaceBetweenSquares);
-        float spawnPosZ = Random.Range(15, -5);//minValueY + (RandomSquareIndex() *spaceBetweenSquares);
+        float spawnPosX = Random.Range(-15, 5);  
+        float spawnPosZ = Random.Range(15, -5); 
 
         Vector3 spawnPosition = new(spawnPosX, 1, spawnPosZ);
         return spawnPosition;
