@@ -122,31 +122,30 @@ public class GameManager : MonoBehaviour
     {
         if (isGameActive)
         {
-            if (health > numberOfHearts){
+            if(health > numberOfHearts){
                 health = numberOfHearts;
             }
 
-            for (int i = 0; i < hearts.Length; i++)
-        {
-            if (i < health)
-            {
-                hearts[i].sprite = FullHeart;
-            } else
-            {
-                hearts[i].sprite = EmptyHeart;
-            }
-            
-            if (i < numberOfHearts)
-            {
-                hearts[i].enabled = true;
-            } else
-            {
-                hearts[i].enabled = false;
-            }
-        }
+            for (int i = 0; i < hearts.Length; i++){
+                if(i < health){
+                    hearts[i].sprite = FullHeart;
+                }else{
+                    hearts[i].sprite = EmptyHeart;
+                }
+                
+                if(i < numberOfHearts){
+                    hearts[i].enabled = true;
+                }else{
+                    hearts[i].enabled = false;
+                }
 
-            if (health == 0)
-            {
+                if(hasHealthPowerUp){
+                    health++;
+                    hasHealthPowerUp = false;
+                }
+            }
+
+            if(health == 0){
                 GameOver();
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
