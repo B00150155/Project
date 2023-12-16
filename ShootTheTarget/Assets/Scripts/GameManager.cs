@@ -166,13 +166,31 @@ public class GameManager : MonoBehaviour
 
     IEnumerator SpawnPowerUp(){
         while(isGameActive){
-            yield return new WaitForSeconds(30);
+            yield return new WaitForSeconds(3);
             int index = Random.Range(0, powerUps.Count);
 
             if(isGameActive){
                 Instantiate(powerUps[index], RandomPowerSpawnPosition(), powerUps[index].transform.rotation);
+                yield return new WaitForSeconds(5);
+                GameObject[] destroy2xObject;
+                destroy2xObject = GameObject.FindGameObjectsWithTag("2x");
+                foreach (GameObject one2xObject in destroy2xObject)
+                Destroy (one2xObject);
+
+                GameObject[] destroyHealthObject;
+                destroyHealthObject = GameObject.FindGameObjectsWithTag("Health");
+                foreach (GameObject oneObject in destroyHealthObject)
+                Destroy (oneObject);
+                
             }
         }
+    }
+
+    IEnumerator RemoveObjectRoutine ()
+    {
+        yield return new WaitForSeconds(5);
+        //Destroy(gameObject.CompareTag("2x"));
+
     }
 
     Vector3 RandomPowerSpawnPosition()
