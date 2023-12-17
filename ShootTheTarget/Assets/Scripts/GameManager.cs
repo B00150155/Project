@@ -45,13 +45,6 @@ public class GameManager : MonoBehaviour
 
     void Start(){
         fPSController = GameObject.Find("Player").GetComponent<FPSController>();
-        /*easyButton = GetComponent<Button>();
-        mediumButton = GetComponent<Button>();
-        hardButton = GetComponent<Button>();
-
-        easyButton.onClick.AddListener(SetDifficulty(5));
-        mediumButton.onClick.AddListener(SetDifficulty(3));
-        hardButton.onClick.AddListener(SetDifficulty(1));*/
     }
 
     // Start the game, remove title screen, reset score, and adjust spawnRate based on difficulty button clicked
@@ -164,6 +157,7 @@ public class GameManager : MonoBehaviour
 
             if(score < 0){
                 GameOver();
+                score = 0;
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
             }
@@ -210,7 +204,6 @@ public class GameManager : MonoBehaviour
     }
 
     public void SetDifficulty(int difficulty){
-        Debug.Log(gameObject.name);
         numberOfHearts = difficulty;
         health = difficulty;
     }

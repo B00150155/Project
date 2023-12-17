@@ -32,7 +32,6 @@ public class Target : MonoBehaviour
         if (gameManager.isGameActive){
             Destroy(gameObject);
             if(gameObject.CompareTag("Bad")){
-                Debug.Log("Fuck You");
                 gameManager.health --;
             } 
             
@@ -43,7 +42,6 @@ public class Target : MonoBehaviour
 
             gameManager.UpdateScore(pointValue);
 
-            Debug.Log(pointValue);
         }
                
     }

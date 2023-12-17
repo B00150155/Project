@@ -12,13 +12,11 @@ public class PowerUp : MonoBehaviour
         if(gameObject.CompareTag("2x")){
             if(other.CompareTag("Player")){
                 Destroy(gameObject);
-                Debug.Log("George2x");
                 gameManager.has2xPowerUp = true;
             }
         }else if (gameObject.CompareTag("Health")){
             if(other.CompareTag("Player")){
                 Destroy(gameObject);
-                Debug.Log("GeorgeHealth");
                 gameManager.hasHealthPowerUp = true;
             }
         }
