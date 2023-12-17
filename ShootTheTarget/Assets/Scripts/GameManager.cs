@@ -173,7 +173,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator SpawnPowerUp(){
         while(isGameActive){
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(30);
             int index = Random.Range(0, powerUps.Count);
 
             if(isGameActive){
