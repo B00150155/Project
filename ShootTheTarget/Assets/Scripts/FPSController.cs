@@ -22,7 +22,6 @@ public class FPSController : MonoBehaviour
 
     public bool canMove = true;
 
-    public bool hasPowerUp;
 
     CharacterController characterController;
     // Start is called before the first frame update

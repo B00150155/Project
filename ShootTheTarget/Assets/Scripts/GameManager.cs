@@ -166,7 +166,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-     IEnumerator PowerupCountdownRoutine(){
+    IEnumerator PowerupCountdownRoutine(){
         yield return new WaitForSeconds(7);
         has2xPowerUp = false;
     }

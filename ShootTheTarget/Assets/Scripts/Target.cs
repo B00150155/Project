@@ -57,11 +57,7 @@ public class Target : MonoBehaviour
 
     }
 
-    // Generates random square index from 0 to 3, which determines which square the target will appear in
-    int RandomSquareIndex ()
-    {
-        return Random.Range(0, 4);
-    }
+
 
 
     
@@ -76,14 +72,6 @@ public class Target : MonoBehaviour
 
     }
 
-    IEnumerator RemoveObjectRoutine ()
-    {
-        yield return new WaitForSeconds(timeOnScreen);
-        if (gameManager.isGameActive)
-        {
-            transform.Translate(Vector3.forward * 5, Space.World);
-        }
-
-    }
+    
 
 }
